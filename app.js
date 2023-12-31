@@ -6,10 +6,10 @@ const {uuid} = require('uuidv4');
 const {tableNameMappings, primaryKeyMappings, createMetadata, viewMetadata} = require("./utils");
 const queries = require("./queries");
 
-const password = "CamCam1234";
+const password = "";
 const connection = mysql.createConnection({
-    host: '129.151.69.174',
-    port: '3308',
+    host: 'localhost',
+    port: '3306',
     user: 'root',
     password: password,
     database: 'coursework'
@@ -80,8 +80,8 @@ app.get('/reset', (req, res) => {
     const syncConnection = (() => {
         try {
             return syncMysql.createConnection({
-                host: '129.151.69.174',
-                port: '3308',
+                host: 'localhost',
+                port: '3306',
                 user: 'root',
                 password: password,
             })
