@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel='stylesheet' href='/style.css'/>
+</head>
+<body class="prose">
+<%- include('header', {name: "Home", tableName: undefined}); %>
+<div class="backdrop-blur-lg md:backdrop-blur-0 w-full min-h-screen">
+    <img src="/home.jpg" class="w-full rounded-lg h-128">
+    <div class="-mt-52 md:-mt-48 ml-0 md:ml-6 p-4 rounded-lg backdrop-blur-2xl w-fit backdrop-brightness-75">
+        <h1 class="mb-0 text-white">University of Surrey Database</h1>
+        <h3 class="mt-4 text-white"><%= numTables %> Tables and <%= numRecords %> Records</h3>
+    </div>
+</div>
+</body>
+</html>

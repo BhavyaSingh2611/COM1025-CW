@@ -1,0 +1,32 @@
+<script>
+    function getCellValue(tr, idx) {
+        return tr.children[idx].innerText || tr.children[idx].textContent;
+    }
+
+    function isNumeric(v1, v2) {
+        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2);
+    }
+
+    function valueCompare(v1, v2) {
+        return isNumeric(v1, v2) ? v1 - v2 : v1.toString().localeCompare(v2);
+    }
+
+    function comparer(idx, asc) {
+        function sortPredicate(a, b) {
+            if (asc) {
+                return valueCompare(getCellValue(a, idx), getCellValue(b, idx));
+            }
+            return valueCompare(getCellValue(b, idx), getCellValue(a, idx));
+        }
+
+        return sortPredicate;
+    }
+
+    const tbody = document.querySelector('tbody');
+
+    document.querySelectorAll('th').forEach(th => th.addEventListener('click', () => {
+        Array.from(tbody.querySelectorAll('tr'))
+            .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+            .forEach(tr => tbody.appendChild(tr));
+    }));
+</script>

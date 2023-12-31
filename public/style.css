@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    min-width: 100vw;
+    background-color: #ECE9E6;
+    background-image: url("./bg.png");
+    background-size: cover;
+    @apply p-[2em] md:p-[4em] bg-repeat-y md:bg-no-repeat;
+}
+
+.override {
+    min-width: unset;
+}
+
+.header {
+    width: calc(100vw - 8em);
+}
+
+.header__title {
+    color: var(--tw-prose-headings);
+    font-weight: 800;
+    font-size: 2.25em;
+    margin-top: 0;
+    line-height: 1.1111111;
+}
+
+.header__button {
+    @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4
+    focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5
+    me-2 mb-2 focus:outline-none cursor-pointer no-underline;
+}
+
+.card {
+    @apply max-w-sm p-6 bg-white border border-gray-200 rounded-lg
+    shadow hover:bg-gray-100 basis-full md:basis-1/3 m-4;
+}
+
+.card__title {
+    @apply mb-2 text-2xl font-bold tracking-tight text-gray-900;
+}
+
+.input {
+    @apply block w-full mt-1 rounded-md border-gray-300 shadow-sm
+    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+}
+
+.disabled {
+    @apply opacity-50 cursor-not-allowed;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create <%= name %></title>
+    <link rel='stylesheet' href='/style.css'/>
+</head>
+<body class="prose override">
+<%- include('header', {name: name, tableName: name}); %>
+<form class="w-full mt-12">
+    <% for (let key in metadata) { %>
+        <% let value = metadata[key]; %>
+        <% if (value.autocomplete !== undefined) { %>
+            <label class="block">
+                <span class="text-gray-700"><%= key %></span>
+                <select name='<%= key %>' required
+                        class="input">
+                    <% for (let option of value.autocomplete) { %>
+                        <option value="<%= option %>"><%= option %></option>
+                    <% } %>
+                </select>
+            </label>
+        <% } else { %>
+            <label class="block">
+                <span class="text-gray-700"><%= key %></span>
+                <input type='text' name='<%= key %>' value="" required
+                       class="input"
+                />
+            </label>
+        <% } %>
+    <% } %>
+    <button id="submit" class="header__button mt-8">Create</button>
+</form>
+<script>
+    const form = document.querySelector('form');
+    let formData = new FormData(form);
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const data = {};
+        for (let element of form.elements) {
+            if (element.name) {
+                data[element.name] = element.value;
+            }
+        }
+        fetch(window.location.pathname, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then((response) => response.json())
+            .then((json) => {
+                if (json.status === "OK") {
+                    window.location.href = '/view/<%= name %>';
+                }
+            });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<script>
+    let search = document.getElementById('search');
+    let rows = document.querySelector('table').children[1].children;
+
+    search.addEventListener('keyup', function (e) {
+        let value = e.target.value.toLowerCase();
+
+        for (let i = 0; i < rows.length; i++) {
+            rows[i].classList.toggle('hidden', rows[i].innerText.toLowerCase().indexOf(value) === -1)
+        }
+    });
+</script>
